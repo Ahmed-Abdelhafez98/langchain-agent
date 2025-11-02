@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "langchain-agent"
+version = "0.1.0"
+description = "ReAct agent scaffold powered by Ollama"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "LangChain Agent Team"}
+]
+dependencies = [
+    "langchain>=0.1.0",
+    "langchain-community>=0.0.20",
+    "langchain-ollama>=0.1.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.9",
+    "black>=23.12.0",
+    "mypy>=1.8.0",
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pre-commit>=3.6.0",
+]
+
+[project.scripts]
+langchain-agent = "langchain_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
