@@ -31,7 +31,9 @@ class ReActOutputParser(BaseOutputParser):
         # Parse Action and Action Input
         action_match = re.search(r"Action:\s*(.+?)(?:\n|$)", text, re.IGNORECASE)
         action_input_match = re.search(
-            r"Action Input:\s*(.+?)(?:\n|$)", text, re.IGNORECASE | re.DOTALL
+            r"Action Input:\s*(.+?)(?=\n(?:Thought|Observation|Action|Final Answer)|$)",
+            text,
+            re.IGNORECASE | re.DOTALL,
         )
 
         if not action_match:
