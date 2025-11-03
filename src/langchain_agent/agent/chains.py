@@ -28,7 +28,7 @@ def create_agent_chain(
     llm = OllamaLLM(model=model, temperature=temperature, stop=["\nObservation:"])
 
     # Build chain
-    agent = (
+    agent: Runnable = (
         {"input": lambda x: x["input"], "agent_scratchpad": lambda x: x.get("agent_scratchpad", "")}
         | prompt
         | llm

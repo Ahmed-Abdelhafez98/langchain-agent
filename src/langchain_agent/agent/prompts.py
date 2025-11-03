@@ -1,6 +1,8 @@
 """Prompt templates for the ReAct agent."""
 
-from langchain_core.prompts import PromptTemplate
+from typing import Any
+
+from langchain_core.prompts import BasePromptTemplate
 from langchain_core.tools import BaseTool, render_text_description
 
 REACT_TEMPLATE = """
@@ -26,7 +28,7 @@ REACT_TEMPLATE = """
     """
 
 
-def create_react_prompt(tools: list[BaseTool]) -> PromptTemplate:
+def create_react_prompt(tools: list[BaseTool]) -> BasePromptTemplate[Any]:
     """Create a ReAct prompt template with tools.
 
     Args:
@@ -35,6 +37,8 @@ def create_react_prompt(tools: list[BaseTool]) -> PromptTemplate:
     Returns:
         Configured PromptTemplate with tools and tool_names partially filled
     """
+    from langchain_core.prompts import PromptTemplate
+
     return PromptTemplate.from_template(REACT_TEMPLATE).partial(
         tools=render_text_description(tools), tool_names=", ".join([t.name for t in tools])
     )
