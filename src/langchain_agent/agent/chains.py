@@ -1,6 +1,5 @@
 """Chain builders for the ReAct agent."""
 
-
 from langchain_core.runnables import Runnable
 from langchain_core.tools import BaseTool
 from langchain_ollama import OllamaLLM

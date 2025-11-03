@@ -1,6 +1,5 @@
 """Prompt templates for the ReAct agent."""
 
-
 from langchain_core.prompts import PromptTemplate
 from langchain_core.tools import BaseTool, render_text_description
 
