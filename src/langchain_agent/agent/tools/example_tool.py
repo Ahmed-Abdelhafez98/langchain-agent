@@ -1,10 +1,20 @@
-"""Example tool implementation.
+"""Tool implementations for the ReAct agent."""
 
-This is a stub tool that demonstrates the structure for
-creating custom tools for the ReAct agent.
-"""
+from langchain_core.tools import tool
 
-from langchain.tools import tool
+
+@tool
+def get_text_length(text: str) -> int:
+    """Returns the length of the text in characters.
+
+    Args:
+        text: The input text to measure
+
+    Returns:
+        The number of characters in the text
+    """
+    text = text.strip("'\n").strip('"')
+    return len(text)
 
 
 @tool
