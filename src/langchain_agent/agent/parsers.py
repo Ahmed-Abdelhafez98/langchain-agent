@@ -21,6 +21,16 @@ class ReActOutputParser(BaseOutputParser):
         Raises:
             ValueError: If the output cannot be parsed
         """
+        # Check if text is empty
+        if not text or not text.strip():
+            raise ValueError(
+                "Received empty output from LLM. "
+                "This might indicate:\n"
+                "1. Ollama is not running (start with: ollama serve)\n"
+                "2. The model is not available (pull with: ollama pull <model>)\n"
+                "3. The model name is incorrect"
+            )
+
         # Check for Final Answer
         if "Final Answer:" in text:
             return AgentFinish(
