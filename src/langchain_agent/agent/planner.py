@@ -1,26 +1,25 @@
 """ReAct agent planner module.
 
-This module will contain the core ReAct agent implementation
-using LangChain and Ollama.
-
-TODO:
-- Implement ReAct agent initialization
-- Configure LangChain with Ollama LLM
-- Set up agent executor with tools
-- Implement agent planning and execution loop
+This module contains helper functions for the ReAct agent.
 """
 
+from langchain_core.tools import BaseTool
 
-def create_agent():
-    """Create and configure the ReAct agent.
 
-    TODO: Implement agent creation logic with:
-    - Ollama LLM configuration
-    - Tool binding
-    - ReAct prompt template
-    - Agent executor setup
+def find_tool_by_name(name: str, tools: list[BaseTool]) -> BaseTool:
+    """Find a tool by its name.
+
+    Args:
+        name: The name of the tool to find
+        tools: List of available tools
 
     Returns:
-        Agent executor instance (to be implemented)
+        The tool with the matching name
+
+    Raises:
+        ValueError: If no tool with the given name is found
     """
-    raise NotImplementedError("Agent creation not yet implemented")
+    for tool in tools:
+        if tool.name == name:
+            return tool
+    raise ValueError(f"Tool with name {name} not found")
